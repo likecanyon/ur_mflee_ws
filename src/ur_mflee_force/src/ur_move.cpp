@@ -1,8 +1,8 @@
 /*
  * @Author: likecanyon 1174578375@qq.com
  * @Date: 2022-05-12 17:15:51
- * @LastEditors: DESKTOP-S1QDRL5
- * @LastEditTime: 2023-03-22 19:44:23
+ * @LastEditors: likecanyon 1174578375@qq.com
+ * @LastEditTime: 2023-03-22 20:04:34
  * @FilePath: /ur_rtde/examples/cpp/move_until_contact.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -36,12 +36,14 @@ void ur_move()
 {
     std::vector<double> TCPPose = {0, 0, 0, 0, 0, 0};
     TCPPose = rtde_receive.getActualTCPPose();
+    while (1)
+    {
+        TCPPose[2] = TCPPose[2] + 0.1;
+        rtde_control.moveL(TCPPose, 0.2);
 
-    TCPPose[2] = TCPPose[2] + 0.1;
-    rtde_control.moveL(TCPPose, 0.2);
-
-    TCPPose[2] = TCPPose[2] - 0.1;
-    rtde_control.moveL(TCPPose, 0.1);
+        TCPPose[2] = TCPPose[2] - 0.1;
+        rtde_control.moveL(TCPPose, 0.1);
+    }
 
     std::cout << "finish" << std::endl;
 }
