@@ -1,0 +1,17 @@
+<launch>
+
+
+<node
+pkg = "ur_mflee_force"
+type = "wrench_pub"
+name="wrench_pub"
+/>
+
+<node
+pkg = "ur_mflee_force"
+type = "ur_move"
+name="ur_move"
+/>
+
+
+</launch>
