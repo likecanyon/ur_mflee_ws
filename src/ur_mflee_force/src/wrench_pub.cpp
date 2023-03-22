@@ -84,20 +84,18 @@ int main(int argc, char **argv)
    * A count of how many messages we have sent. This is used to create
    * a unique string for each message.
    */
-  std::vector<double> InitQ{0, -1.57, -1.57, -1.57, 1.57, 0};
+  // std::vector<double> InitQ{0, -1.57, -1.57, -1.57, 1.57, 0};
   // home:0,-90,0,-90,0,00.0, -1.57, -1.57, -1.57, 1.57, 0
 
-  rtde_control.moveJ(InitQ);
+  // rtde_control.moveJ(InitQ);
   std::vector<double> TCPPose = {0, 0, 0, 0, 0, 0};
   TCPPose = rtde_receive.getActualTCPPose();
-  while (1)
-  {
-    TCPPose[2] = TCPPose[2] + 0.1;
-    rtde_control.moveL(TCPPose, 0.2,0.1,true);
+  
+    // TCPPose[2] = TCPPose[2] + 0.1;
+    // rtde_control.moveL(TCPPose, 0.2,0.1,true);
 
-    TCPPose[2] = TCPPose[2] - 0.1;
-    rtde_control.moveL(TCPPose, 0.2,0.1,true);
-  }
+    TCPPose[2] = TCPPose[2] - 0.6;
+    rtde_control.moveL(TCPPose, 0.05,0.05,true);
 
   // init filter
   Iir::Butterworth::LowPass<2> f1, f2, f3, f4, f5, f6; // NOTE： here order should replaced by a int number!
